@@ -4,6 +4,7 @@ class Complex:
     def __init__(self, a: float, b: float) -> None:
         self.real = a
         self.imag = b
+        self.radius, self.theta = self._to_polar()
     
     def __repr__(self) -> str:
         return f"Complex({self.real}, {self.imag})"
@@ -18,6 +19,11 @@ class Complex:
         
         sign = "+" if abs(imag) > 0 else "-"
         return f"z = {real} {sign} {imag}i"
+    
+    def _to_polar(self):
+        radius = np.sqrt(self.real**2 + self.imag**2)
+        theta = np.arctan(self.imag / self.real)
+        return radius, theta
     
     @classmethod
     def from_polar(cls, radius: float, theta: float, tol: float = 1e-14) -> Complex:
