@@ -9,6 +9,22 @@ class Complex:
         self.radius, self.theta = self._to_polar()
 
         self.decimal_rounding = decimal_rounding
+
+    def __add__(self, other: Complex) -> Complex:
+        if isinstance(other, Complex):
+            new_real = self.real + other.real
+            new_imag = self.imag + other.imag
+            return Complex(new_real, new_imag)
+        else:
+            return NotImplemented
+        
+    def __sub__(self, other):
+        if isinstance(other, Complex):
+            new_real = self.real - other.real
+            new_imag = self.imag - other.imag
+            return Complex(new_real, new_imag)
+        else:
+            return NotImplemented
     
     def __repr__(self) -> str:
         return f"Complex({self.real}, {self.imag})"
