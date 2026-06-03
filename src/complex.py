@@ -103,8 +103,3 @@ class Complex:
             imag = 0
 
         return cls(real, imag)
-    
-my_num = Complex(np.sqrt(2), np.sqrt(2))
-my_num_roots = my_num.calculate_roots(5)
-
-my_num.plot_roots(my_num_roots)
