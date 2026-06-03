@@ -18,10 +18,18 @@ class Complex:
         else:
             return NotImplemented
         
-    def __sub__(self, other):
+    def __sub__(self, other) -> Complex:
         if isinstance(other, Complex):
             new_real = self.real - other.real
             new_imag = self.imag - other.imag
+            return Complex(new_real, new_imag)
+        else:
+            return NotImplemented
+        
+    def __mul__(self, other) -> Complex:
+        if isinstance(other, Complex):
+            new_real = self.real * other.real - self.imag * other.imag
+            new_imag = self.real * other.imag + self.imag * other.real
             return Complex(new_real, new_imag)
         else:
             return NotImplemented
