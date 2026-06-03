@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from typing import List
 
 class Complex:
@@ -24,7 +25,7 @@ class Complex:
 
         real = np.round(real, self.decimal_rounding)
         imag = np.round(imag, self.decimal_rounding)
-        return f"z = {real} {sign} {abs(imag)}i"
+        return f"$z = {real} {sign} {abs(imag)}i$"
     
     def _to_polar(self):
         radius = np.sqrt(self.real**2 + self.imag**2)
@@ -41,6 +42,33 @@ class Complex:
             roots.append(Complex.from_polar(root_radius, theta))
         return roots
     
+    def plot_roots(self, roots: List[Complex]) -> None:
+        if len(roots) == 0:
+            return
+        
+        r = roots[0].radius
+        root_circle_angles = np.linspace(0, 2 * np.pi, 100)
+
+        xs = r * np.cos(root_circle_angles)
+        ys = r * np.sin(root_circle_angles)
+
+        plt.figure(figsize=(8, 8))
+        plt.scatter(self.real, self.imag, label=self, color="black", zorder=5)
+        plt.plot(xs, ys)
+
+        for root in roots:
+            plt.scatter(root.real, root.imag, label=root, color="red", zorder=5)
+            plt.annotate(f"{root}", xy=(root.real, root.imag), xytext=(10, 10), 
+             textcoords='offset points', ha='left', va='bottom',
+             arrowprops=dict(arrowstyle='-', color='gray', lw=0.5))
+
+        plt.grid(zorder=0)
+        plt.axis('equal')
+        plt.xlabel("Real axis")
+        plt.ylabel("Imaginary axis")
+        plt.legend()
+        plt.show()
+    
     @classmethod
     def from_polar(cls, radius: float, theta: float, tol: float = 1e-14) -> Complex:
         real = radius * np.cos(theta)
@@ -51,3 +79,8 @@ class Complex:
             imag = 0
 
         return cls(real, imag)
+    
+my_num = Complex(1, 2)
+my_num_roots = my_num.calculate_roots(3)
+
+my_num.plot_roots(my_num_roots)
