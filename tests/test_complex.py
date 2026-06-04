@@ -26,3 +26,14 @@ def test_multiplication(z1, z2):
 
     assert result.real == -10
     assert result.imag == 11
+
+def test_scalar_multiplication(z1):
+    result = 2 * z1
+
+    assert result.real == 4
+    assert result.imag == 6
+
+    result = 2.0 * z1
+
+    assert result.real == 4
+    assert result.imag == 6
