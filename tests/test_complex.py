@@ -37,3 +37,15 @@ def test_scalar_multiplication(z1):
 
     assert result.real == 4
     assert result.imag == 6
+
+def test_division_by_complex(z1, z2):
+    result = z1 / z2
+
+    assert result.real == (14 / 17)
+    assert result.imag == - (5 / 17)
+
+def test_scalar_divided_by_complex(z1):
+    result = 1 / z1
+
+    assert result.real == (2 / 13)
+    assert result.imag == - (3 / 13)

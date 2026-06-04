@@ -41,6 +41,31 @@ class Complex:
     def __rmul__(self, other) -> Complex:
         return self.__mul__(other)
     
+    def __truediv__(self, other) -> Complex:
+        if isinstance(other, Complex):
+            dividend = other.real**2 + other.imag**2
+            new_real = (self.real * other.real + self.imag * other.imag) / dividend
+            new_imag = (self.imag * other.real - self.real * other.imag) / dividend
+            return Complex(new_real, new_imag)
+        elif isinstance(other, (int, float)):
+            if other == 0:
+                raise ZeroDivisionError
+            else:
+                new_real = self.real / other
+                new_imag = self.imag / other
+                return Complex(new_real, new_imag)
+        else:
+            return NotImplemented
+        
+    def __rtruediv__(self, other) -> Complex:
+        if isinstance(other, Complex):
+            return other.__truediv__(self)
+        elif isinstance(other, (int, float)):
+            other = Complex(other, 0)
+            return other.__truediv__(self)
+        else:
+            return NotImplemented
+    
     def __repr__(self) -> str:
         return f"Complex({self.real}, {self.imag})"
     
