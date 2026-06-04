@@ -17,3 +17,11 @@ Run tests using
 ```
 python3 -m pytest
 ```
+
+### How to run notebooks:
+Easiest way for me to ensure all modules are imported into the notebooks are by creating/installing a dedicated kernel after setting up venv, like so:
+```
+python3 -m ipykernel install --user --name="MATTE3" --display-name="MATTE3"
+```
+
+NB: Make sure to set your kernel to the newly created "MATTE3" kernel:-)
