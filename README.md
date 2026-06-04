@@ -15,5 +15,5 @@ pip3 install -r requirements.txt
 ### Run tests:
 Run tests using
 ```
-python -m pytest tests/test_complex.py -v
+python3 -m pytest
 ```
