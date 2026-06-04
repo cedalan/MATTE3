@@ -31,8 +31,15 @@ class Complex:
             new_real = self.real * other.real - self.imag * other.imag
             new_imag = self.real * other.imag + self.imag * other.real
             return Complex(new_real, new_imag)
+        elif isinstance(other, (int, float)):
+            new_real = self.real * other
+            new_imag = self.imag * other
+            return Complex(new_real, new_imag)
         else:
             return NotImplemented
+        
+    def __rmul__(self, other) -> Complex:
+        return self.__mul__(other)
     
     def __repr__(self) -> str:
         return f"Complex({self.real}, {self.imag})"
