@@ -1,5 +1,5 @@
 import pytest
-from src.complex import Complex
+from complex_lib.complex import Complex
 
 @pytest.fixture
 def z1():
